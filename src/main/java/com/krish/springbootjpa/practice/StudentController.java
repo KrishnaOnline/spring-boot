@@ -7,59 +7,36 @@ import java.util.List;
 
 @RestController
 public class StudentController {
-    private final StudentRepository studentRepository;
     // Constructor Injection (RECOMMENDED)
-    public StudentController(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @PostMapping("/students")
     public StudentResponseDto createStudent(@RequestBody StudentDto studentDto) {
-        var student = toStudent(studentDto);
-        var savedStudent = studentRepository.save(student);
-        return toStudentResponse(savedStudent);
-    }
-
-    private Student toStudent(StudentDto studentDto) {
-        var student = new Student();
-        student.setFirstName(studentDto.firstName());
-        student.setLastName(studentDto.lastName());
-        student.setEmail(studentDto.email());
-
-        var school = new School();
-        school.setId(studentDto.schoolId());
-
-        student.setSchool(school);
-        return student;
-    }
-
-    private StudentResponseDto toStudentResponse(Student student) {
-        return new StudentResponseDto(
-                student.getFirstName(),
-                student.getLastName(),
-                student.getEmail(),
-                student.getSchool().getId()
-        );
+        return studentService.saveStudent(studentDto);
     }
 
     @GetMapping("/students")
     public List<Student> findAllStudents() {
-        return studentRepository.findAll();
+        return this.studentService.findAllStudents();
     }
 
     @GetMapping("/students/{student-id}")
-    public Student findStudentById(@PathVariable("student-id") Integer id) {
-        return studentRepository.findById(id).orElse(new Student());
+    public Student getStudentById(@PathVariable("student-id") Integer id) {
+        return studentService.findStudentById(id);
     }
 
     @GetMapping("/students/search/{student-email}")
-    public List<Student> findStudentsByName(@PathVariable("student-email") String mail) {
-        return studentRepository.findAllByEmailContaining(mail);
+    public List<Student> findStudentsByEmail(@PathVariable("student-email") String mail) {
+        return studentService.findStudentsByEmail(mail);
     }
 
     @DeleteMapping("/students/{student-id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteStudentById(@PathVariable("student-id") Integer id) {
-        studentRepository.deleteById(id);
+        this.studentService.deleteStudentById(id);
     }
 }
