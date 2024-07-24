@@ -1,5 +1,6 @@
 package com.krish.springbootjpa.practice;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +17,13 @@ public class Student {
     private int age;
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     private StudentProfile studentProfile;
+    @ManyToOne
+    @JoinColumn(name = "school_id")
+    @JsonBackReference
+    private School school;
+    @Column(updatable = false)   // true by default
+    private String someColumn;
+
 
     public School getSchool() {
         return school;
@@ -40,12 +48,6 @@ public class Student {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "school_id")
-    private School school;
-    @Column(updatable = false)   // true by default
-    private String someColumn;
 
     public Student() { }
 

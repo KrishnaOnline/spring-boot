@@ -1,5 +1,6 @@
 package com.krish.springbootjpa.practice;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,6 +14,9 @@ public class School {
     @GeneratedValue
     private Integer id;
     private String name;
+    @OneToMany(mappedBy = "school")
+    @JsonManagedReference
+    private List<Student> students;
 
     public List<Student> getStudents() {
         return students;
@@ -21,9 +25,6 @@ public class School {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
-
-    @OneToMany(mappedBy = "school")
-    private List<Student> students;
 
     public School() {
     }
