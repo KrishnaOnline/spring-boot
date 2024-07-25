@@ -3,6 +3,8 @@ package com.krish.springbootjpa.practice.student;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -15,7 +17,9 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public StudentResponseDto createStudent(@RequestBody StudentDto studentDto) {
+    public StudentResponseDto createStudent(
+        @Valid @RequestBody StudentDto studentDto
+    ) {
         return studentService.saveStudent(studentDto);
     }
 
