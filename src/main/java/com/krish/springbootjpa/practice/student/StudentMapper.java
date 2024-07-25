@@ -1,6 +1,8 @@
-package com.krish.springbootjpa.practice;
+package com.krish.springbootjpa.practice.student;
 
 import org.springframework.stereotype.Service;
+
+import com.krish.springbootjpa.practice.school.School;
 
 @Service
 public class StudentMapper {

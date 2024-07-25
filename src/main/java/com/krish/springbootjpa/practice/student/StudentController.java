@@ -1,4 +1,4 @@
-package com.krish.springbootjpa.practice;
+package com.krish.springbootjpa.practice.student;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

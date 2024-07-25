@@ -1,4 +1,4 @@
-package com.krish.springbootjpa.practice;
+package com.krish.springbootjpa.practice.school;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

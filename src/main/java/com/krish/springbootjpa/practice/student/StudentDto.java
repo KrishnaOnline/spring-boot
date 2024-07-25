@@ -1,4 +1,4 @@
-package com.krish.springbootjpa.practice;
+package com.krish.springbootjpa.practice.student;
 
 public record StudentDto(
         String firstName,

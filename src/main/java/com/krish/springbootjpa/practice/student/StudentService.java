@@ -1,4 +1,4 @@
-package com.krish.springbootjpa.practice;
+package com.krish.springbootjpa.practice.student;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;

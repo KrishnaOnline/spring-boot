@@ -1,4 +1,6 @@
-package com.krish.springbootjpa.practice;
+package com.krish.springbootjpa.practice.studentprofile;
+
+import com.krish.springbootjpa.practice.student.Student;
 
 import jakarta.persistence.*;
 

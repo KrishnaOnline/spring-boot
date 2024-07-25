@@ -1,6 +1,9 @@
-package com.krish.springbootjpa.practice;
+package com.krish.springbootjpa.practice.student;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.krish.springbootjpa.practice.school.School;
+import com.krish.springbootjpa.practice.studentprofile.StudentProfile;
+
 import jakarta.persistence.*;
 
 @Entity

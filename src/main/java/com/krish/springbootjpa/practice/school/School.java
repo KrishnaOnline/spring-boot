@@ -1,6 +1,8 @@
-package com.krish.springbootjpa.practice;
+package com.krish.springbootjpa.practice.school;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.krish.springbootjpa.practice.student.Student;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
