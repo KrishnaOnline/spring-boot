@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -23,16 +24,24 @@ public class StudentService {
         return studentMapper.toStudentResponse(savedStudent);
     }
 
-    public List<Student> findAllStudents() {
-        return studentRepository.findAll();
+    public List<StudentResponseDto> findAllStudents() {
+        return studentRepository.findAll()
+                .stream()
+                .map(studentMapper::toStudentResponse)
+                .collect(Collectors.toList());
     }
 
-    public Student findStudentById(Integer id) {
-        return studentRepository.findById(id).orElse(new Student());
+    public StudentResponseDto findStudentById(Integer id) {
+        return studentRepository.findById(id)
+                .map(studentMapper::toStudentResponse)
+                .orElse(null);
     }
 
-    public List<Student> findStudentsByEmail(String mail) {
-        return studentRepository.findAllByEmailContaining(mail);
+    public List<StudentResponseDto> findStudentsByEmail(String mail) {
+        return studentRepository.findAllByEmailContaining(mail)
+                .stream()
+                .map(studentMapper::toStudentResponse)
+                .collect(Collectors.toList());
     }
 
     public void deleteStudentById(Integer id) {
